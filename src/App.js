@@ -1,5 +1,4 @@
 import Carrousel from './Components/Carrousel';
-import Picos from './Components/Picos';
 import Layout from './Components/Layout';
 import Home from './Components/Home';
 import Informacion from './Components/Informacion';

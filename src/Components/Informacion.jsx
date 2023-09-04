@@ -1,9 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Grafico from "./Grafico";
 
 const Informacion = () => {
     return (
-        <h1 className='title'>Eco News</h1>
-        
+        <Fragment>
+            <h1 className='title'>Eco News</h1>
+            <Grafico/>
+        </Fragment>
     )
 }
 

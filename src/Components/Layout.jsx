@@ -5,12 +5,15 @@ import { Link, Outlet } from "react-router-dom";
 const Layout = () => {
     return (
     <React.Fragment>
-        <nav>
-            <Link to={'/'}>Home</Link>
-            <br/>
-            <Link to={'/informacion'}>Informacion</Link>
-        </nav>
-        <Outlet/>
+        <div>
+            <nav className='navbar'>
+                <Link to={'/'} className='nav-link'>Home</Link>
+                <Link to={'/informacion'} className='nav-link'>Informacion</Link>
+            </nav>
+        </div>
+        <div className='content'>
+            <Outlet/>
+        </div>
     </React.Fragment>)
 }
 
