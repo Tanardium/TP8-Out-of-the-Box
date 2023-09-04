@@ -1,83 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
+import Chart from 'chart.js/auto';
 
-const Grafico = () => {
-  const [temperatureData, setTemperatureData] = useState(null);
+function WeatherChart() {
+  const [weatherData, setWeatherData] = useState([]);
 
   useEffect(() => {
     const apiKey = 'eegTATJfAibNZCiuVfG1Cr4MVaTPtUoY';
-    const apiUrl =
-      'https://api.tomorrow.io/v4/timelines?location=40.75872069597532,-73.98529171943665&fields=temperature&timesteps=1h&units=metric&apikey=' +
-      apiKey;
+    const latitude = -34.61; // Latitud de Buenos Aires
+    const longitude = -58.38; // Longitud de Buenos Aires
+    const units = 'metric'; // Unidades métricas, puedes cambiarlas según tu preferencia
+
+    const apiUrl = `https://api.tomorrow.io/v4/timelines?location=${latitude},${longitude}&fields=temperature&units=${units}&apikey=${apiKey}`; //Puede no funcionar porque los request están limitados
 
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        // Extrae la serie de tiempo de temperatura de la respuesta JSON
-        const temperatureTimeline = data.data.timelines.temperature;
-
-        // Crea un array de objetos con las marcas de tiempo y valores de temperatura
-        const temperatureChartData = temperatureTimeline.map((entry) => ({
-          time: entry.startTime, // Marca de tiempo
-          value: entry.intervals[0].value, // Valor de temperatura en grados Celsius
-        }));
-
-        // Divide los datos en marcas de tiempo y valores
-        const timeLabels = temperatureChartData.map((entry) => entry.time);
-        const temperatureValues = temperatureChartData.map((entry) => entry.value);
-
-        // Actualiza el estado con los datos de temperatura
-        setTemperatureData({
-          time: timeLabels,
-          values: temperatureValues,
-        });
+        const temperatures = data.data.timelines[0].intervals.map((interval) => interval.values.temperature);
+        setWeatherData(temperatures);
       })
       .catch((error) => {
-        console.error('Error al obtener los datos:', error);
+        console.error('Error al obtener datos meteorológicos:', error);
       });
   }, []);
 
-  return (
-    <div>
-      {temperatureData && (
-        <Line
-          data={{
-            labels: temperatureData.time,
-            datasets: [
-              {
-                label: 'Temperatura (°C)',
-                data: temperatureData.values,
-                borderColor: 'rgb(75, 192, 192)',
-                borderWidth: 2,
-                fill: false,
-              },
-            ],
-          }}
-          options={{
-            responsive: true,
-            scales: {
-              x: {
-                type: 'time',
-                time: {
-                  unit: 'hour', // Puedes ajustar la unidad de tiempo según tus datos
-                },
-                title: {
-                  display: true,
-                  text: 'Tiempo',
-                },
-              },
-              y: {
-                title: {
-                  display: true,
-                  text: 'Temperatura (°C)',
-                },
-              },
+  useEffect(() => {
+    if (weatherData.length > 0) {
+      const ctx = document.getElementById('weatherChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [...Array(weatherData.length).keys()],
+          datasets: [
+            {
+              label: 'Temperatura',
+              data: weatherData,
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
             },
-          }}
-        />
-      )}
+          ],
+        },
+      });
+    }
+  }, [weatherData]);
+
+  return (
+    <div className="weather-chart-container">
+      <h1>Gráfico del Tiempo para Buenos Aires</h1>
+      <h3>El siguiente gráfico nos muestra los cambios de temperatura a través de 120 puntos </h3>
+      <canvas id="weatherChart" width="400" height="200"></canvas>
     </div>
   );
-};
+}
 
-export default Grafico;
+export default WeatherChart;

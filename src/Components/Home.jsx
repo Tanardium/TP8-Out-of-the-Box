@@ -1,12 +1,13 @@
 import React, { Fragment } from "react";
 import Carrousel from "./Carrousel";
-import TemperatureChart from "./Grafico";
+import Mapa from "./Mapa";
 
 const Home = () => {
     return (
         <Fragment>
             <h1 className='title'>Eco News</h1>
             <Carrousel/>
+            <Mapa/>
         </Fragment>
     )
 }
