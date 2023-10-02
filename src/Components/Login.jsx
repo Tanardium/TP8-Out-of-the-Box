@@ -20,7 +20,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     login({ username });
-    navigate('/dashboard');
+    navigate('/');
   };
 
   return (
@@ -49,9 +49,11 @@ function Login() {
             required
           />
         </div>
+        <div className="button-container">
+        <Link to="/" className="link"><button className='back'>Volver</button></Link>
         <button type="submit">Iniciar sesión</button>
+        </div>
       </form>
-      <Link to="/" className="link">Volver a la página de inicio</Link>
     </div>
   );
 }

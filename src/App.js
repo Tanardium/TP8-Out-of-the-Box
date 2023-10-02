@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Asegúrate de importar los componentes necesarios para el enrutamiento
 import Login from './LoginPage';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (

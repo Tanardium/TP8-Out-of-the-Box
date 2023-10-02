@@ -1,10 +1,11 @@
 .card {
-    width: 300px;
+    width: 500px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10%;
   }
   
   .form-group {
@@ -31,10 +32,17 @@
     border-radius: 3px;
     padding: 10px 20px;
     cursor: pointer;
+    margin-right: 45px;
+    margin-top: 7px;
   }
   
-  button[type="submit"]:hover {
-    background-color: #0056b3;
+  .back {
+    background-color: darkgrey;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 3px;
+    color: #fff;
+    margin-left: 45px;
   }
   
   .link {
@@ -44,4 +52,10 @@
     text-decoration: none;
     color: #007bff;
   }
+
   
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Espacio entre los elementos */
+  align-items: center; /* Alinea verticalmente al centro */
+}

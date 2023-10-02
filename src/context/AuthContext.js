@@ -7,21 +7,21 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState(null);
 
   const login = (userData) => {
     // Aquí puedes realizar la lógica de autenticación
     // Por ahora, simplemente establecemos el usuario en algún valor
-    setUser(userData);
+    setUsername(userData);
   };
 
   const logout = () => {
     // Implementa la lógica para cerrar la sesión (si es necesario)
-    setUser(null);
+    setUsername(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ username, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
