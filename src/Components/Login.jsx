@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { ContextUsuario} from '../context/ContextUsuario';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
-  const { login } = useAuth();
+  const {setUsuario, usuario} = React.useContext(ContextUsuario);
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
@@ -19,8 +19,9 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login({ username });
+    setUsuario({ username });
     navigate('/');
+    console.log(usuario);
   };
 
   return (

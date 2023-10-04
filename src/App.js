@@ -6,10 +6,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Asegúrate de importar los componentes necesarios para el enrutamiento
 import Login from './LoginPage';
-import { AuthProvider } from './context/AuthContext';
+import UsuarioProvider from './context/ContextUsuario';
 
 function App() {
   return (
+    <UsuarioProvider>
       <BrowserRouter>
       <Routes>
       <Route path='/login' element={<Login />}></Route>
@@ -20,6 +21,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </UsuarioProvider>
   );
 }
 
