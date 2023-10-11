@@ -19,7 +19,8 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUsuario({ nombre: username });
+    setUsuario(username );
+    localStorage.setItem('usuario', JSON.stringify( username  ))
     setAutenticado(true);
     navigate('/');
   };

@@ -17,7 +17,7 @@ const Perfil = () => {
       <h1>Tu perfil</h1>
       <div className="form-group">
         <br />
-        <h4>Nombre de usuario: {usuario.nombre}</h4>
+        <h4>Nombre de usuario: {usuario}</h4>
         <br />
           <Link to="/" className="link">
             <button onClick={logOut} type="submit" class="btn btn-primary btn-lg">Cerrar sesión</button>
